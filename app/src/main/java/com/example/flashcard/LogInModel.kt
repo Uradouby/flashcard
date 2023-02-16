@@ -31,7 +31,7 @@ class LogInModel: ViewModel()  {
 
     fun check():Boolean
     {
-//        return true
+//      return true
         //if (username!= Resources.getSystem().getString(R.string.username)) return false
         //if (password!=Resources.getSystem().getString(R.string.password)) return false
         if (username!="Wizard") return false

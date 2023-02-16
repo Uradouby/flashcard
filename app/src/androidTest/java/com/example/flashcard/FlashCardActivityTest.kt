@@ -2,6 +2,7 @@ package com.example.flashcard
 
 import androidx.lifecycle.Lifecycle
 import androidx.test.core.app.ActivityScenario
+import androidx.test.espresso.Espresso.closeSoftKeyboard
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.action.ViewActions.typeText
@@ -39,6 +40,7 @@ internal class FlashCardActivityTest {
     fun testView() {
 //        onView(withId(R.id.question)).check(matches(withText("Question 1:")))
         onView(withId(R.id.answer)).perform(typeText("10"))
+        closeSoftKeyboard()
         onView(withId(R.id.submit)).perform(click())
     }
 
