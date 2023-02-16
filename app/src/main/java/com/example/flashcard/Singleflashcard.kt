@@ -1,8 +1,5 @@
 package com.example.flashcard
 
-import kotlinx.coroutines.supervisorScope
-import kotlin.random.Random
-
 class Singleflashcard constructor(type:Int)
 {
     private var op1:Int = (1..99).random()
@@ -33,7 +30,7 @@ class Singleflashcard constructor(type:Int)
         return answer
     }
 
-    fun inputAnswer(a:String)
+    fun inputAnswer(a: String)
     {
         inputAnswer=a
     }
