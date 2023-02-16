@@ -18,6 +18,19 @@ internal class flashcardModelTest {
         Assert.assertEquals(singleflashcard.isCorrect(), false)
         singleflashcard.submitAnswer()
         Assert.assertEquals(singleflashcard.isCorrect(), true)
+    }
+
+    /**
+     * single flash card test
+     */
+    @org.junit.Test
+    fun isCorrect() {
+        var singleflashcard = Singleflashcard(1)
+        // right answer
+        singleflashcard.inputAnswer((singleflashcard.getOp1() + singleflashcard.getOp() * singleflashcard.getOp2()).toString())
+        Assert.assertEquals(singleflashcard.isCorrect(), false)
+        singleflashcard.submitAnswer()
+        Assert.assertEquals(singleflashcard.isCorrect(), true)
 
         // false test case
         singleflashcard.inputAnswer((1..99).random().toString())
@@ -25,12 +38,11 @@ internal class flashcardModelTest {
         Assert.assertEquals(singleflashcard.isCorrect(), false)
     }
 
-
     /**
      * test flashCard
      */
-    @org.junit.Test
-    fun flashcardTest() {
+    @Test
+    fun getTotalScore() {
         var flashcardmodel = flashcardModel()
         var right = 0
         var wrong = 0

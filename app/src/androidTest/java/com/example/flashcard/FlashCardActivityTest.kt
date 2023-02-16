@@ -4,16 +4,17 @@ import androidx.lifecycle.Lifecycle
 import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.Espresso.closeSoftKeyboard
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.action.ViewActions.click
-import androidx.test.espresso.action.ViewActions.typeText
+import androidx.test.espresso.action.ScrollToAction
+import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.assertion.ViewAssertions.matches
-import androidx.test.espresso.matcher.ViewMatchers.withId
-import androidx.test.espresso.matcher.ViewMatchers.withText
+import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import org.hamcrest.Matchers.not
 import org.junit.After
 import org.junit.Test
 import org.junit.Assert.*
 import org.junit.Before
+import org.junit.Rule
 
 import org.junit.runner.RunWith
 
@@ -32,16 +33,22 @@ internal class FlashCardActivityTest {
     }
 
     @Test
+    fun testView() {
+        onView(withId(R.id.question)).check(matches(withText("Question 1:")))
+
+        for(i in 0..9) {
+            onView(withId(R.id.answer)).perform(typeText("test"))
+            closeSoftKeyboard();
+            onView(withId(R.id.submit)).perform(click())
+        }
+
+        onView(withId(R.id.answer)).check(matches(withEffectiveVisibility(Visibility.VISIBLE)))
+    }
+
+    @Test
     fun testLaunchActivity() {
         assertNotNull(scenario)
     }
 
-    @Test
-    fun testView() {
-//        onView(withId(R.id.question)).check(matches(withText("Question 1:")))
-        onView(withId(R.id.answer)).perform(typeText("10"))
-        closeSoftKeyboard()
-        onView(withId(R.id.submit)).perform(click())
-    }
 
 }
